@@ -111,9 +111,3 @@ This assignment asks you to design a program and implement it in micro:bit JavaS
 
 A screensaver that toggles on and off random leds on the 5x5 matrix.
 
-### SS 2 
-
-_[And so on]_
-
-## Demo URL
-
