@@ -109,7 +109,7 @@ This assignment asks you to design a program and implement it in micro:bit JavaS
 
 ### SS 1
 
-_[Your description of screensaver 1]_
+A screensaver that toggles on and off random leds on the 5x5 matrix.
 
 ### SS 2 
 
