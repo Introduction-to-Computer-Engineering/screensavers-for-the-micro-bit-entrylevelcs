@@ -2,6 +2,8 @@ let isAsleep = false
 let screenNumber = 0
 let xCoord = 0
 let yCoord = 0
+basic.showString("Awake")
+led.plotAll()
 //go to sleep
 input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
@@ -30,6 +32,7 @@ input.onButtonPressed(Button.A, function () {
                 spin()
             }
         }
+        //screensaver 4
         if (screenNumber == 4) {
             basic.clearScreen()
             xCoord = 0
@@ -38,10 +41,11 @@ input.onButtonPressed(Button.A, function () {
                 snake()
             }
         }
+        //screensaver 5
         if (screenNumber == 5) {
             basic.clearScreen()
             while (screenNumber == 5) {
-                rain()
+                spectrogram()
             }
         }
     }
@@ -54,11 +58,10 @@ input.onButtonPressed(Button.B, function () {
     basic.showString("Awake")
     led.plotAll()
 })
-
 input.onGesture(Gesture.Shake, function () {
     screenNumber = 1
 })
-input.onGesture(Gesture.LogoDown, function () {
+input.onGesture(Gesture.LogoUp, function () {
     screenNumber = 2
 })
 input.onGesture(Gesture.TiltRight, function () {
@@ -67,10 +70,9 @@ input.onGesture(Gesture.TiltRight, function () {
 input.onGesture(Gesture.TiltLeft, function () {
     screenNumber = 4
 })
-input.onGesture(Gesture.LogoUp, function () {
+input.onGesture(Gesture.LogoDown, function () {
     screenNumber = 5
 })
-
 function randomTog() {
     led.toggle(Math.randomRange(0, 4), Math.randomRange(0, 4))
     basic.pause(30)
@@ -88,7 +90,6 @@ function rain() {
     basic.pause(100)
     led.toggle(xCoord, 4)
 }
-
 function spin() {
     led.toggle(xCoord, 0)
     led.toggle(xCoord - 1, 0)
@@ -115,7 +116,6 @@ function spin() {
         led.toggle(2, 2)
     }
 }
-
 function snake() {
     if (yCoord == 0 || yCoord == 2 || yCoord == 4) {
         for (let i = 0; i < 5; i++) {
@@ -139,5 +139,16 @@ function snake() {
         yCoord = 0
         basic.clearScreen()
         basic.pause(50)
+    }
+}
+function spectrogram() {
+    basic.clearScreen()
+    for (let i = 4; i > Math.randomRange(-1, 3); i--) {
+        led.toggle(4, i)
+        led.toggle(3, i)
+        led.toggle(2, i)
+        led.toggle(1, i)
+        led.toggle(0, i)
+        basic.pause(100)
     }
 }
