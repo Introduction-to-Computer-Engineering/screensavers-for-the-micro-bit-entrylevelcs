@@ -126,3 +126,6 @@ A screensaver that creates a snake that moves from the top to the bottom of the 
 ### SS 5
 
 A screensaver that randomly simulates an audio spectrogram using the 5x5 matrix.
+
+### Video Demo
+[Screensaver Demo with Gesture control](https://imgur.com/a/w6OkwRh)
