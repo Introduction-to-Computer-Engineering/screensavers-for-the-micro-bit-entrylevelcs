@@ -32,8 +32,10 @@ input.onButtonPressed(Button.A, function () {
         }
         if (screenNumber == 4) {
             basic.clearScreen()
+            xCoord = 0
+            yCoord = 0
             while (screenNumber == 4) {
-                rain()
+                snake()
             }
         }
         if (screenNumber == 5) {
@@ -50,18 +52,19 @@ input.onButtonPressed(Button.B, function () {
     isAsleep = false
     basic.clearScreen()
     basic.showString("Awake")
+    led.plotAll()
 })
 
 input.onGesture(Gesture.Shake, function () {
     screenNumber = 1
 })
-input.onGesture(Gesture.TiltLeft, function () {
+input.onGesture(Gesture.LogoDown, function () {
     screenNumber = 2
 })
 input.onGesture(Gesture.TiltRight, function () {
     screenNumber = 3
 })
-input.onGesture(Gesture.LogoDown, function () {
+input.onGesture(Gesture.TiltLeft, function () {
     screenNumber = 4
 })
 input.onGesture(Gesture.LogoUp, function () {
@@ -110,5 +113,31 @@ function spin() {
         xCoord = 0
         yCoord = 0
         led.toggle(2, 2)
+    }
+}
+
+function snake() {
+    if (yCoord == 0 || yCoord == 2 || yCoord == 4) {
+        for (let i = 0; i < 5; i++) {
+            led.toggle(i, yCoord)
+            led.toggle(4 - i, yCoord - 1)
+            basic.pause(100)
+            xCoord = i
+        }
+        yCoord++
+    }
+    if (yCoord == 1 || yCoord == 3 || yCoord == 5) {
+        for (let i = 4; i > -1; i--) {
+            led.toggle(i, yCoord)
+            led.toggle(4 - i, yCoord - 1)
+            basic.pause(100)
+            xCoord = i
+        }
+        yCoord++
+    }
+    else {
+        yCoord = 0
+        basic.clearScreen()
+        basic.pause(50)
     }
 }
