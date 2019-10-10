@@ -118,3 +118,7 @@ A screensaver that simulates rain falling from the top of the 5x5 matrix to the 
 ### SS 3
 
 A screensaver that spins around the central point of the 5x5 matrix.
+
+### SS 4
+
+A screensaver that creates a snake that moves from the top to the bottom of the 5x5 matrix.
