@@ -122,3 +122,7 @@ A screensaver that spins around the central point of the 5x5 matrix.
 ### SS 4
 
 A screensaver that creates a snake that moves from the top to the bottom of the 5x5 matrix.
+
+### SS 5
+
+A screensaver that randomly simulates an audio spectrogram using the 5x5 matrix.
