@@ -114,3 +114,7 @@ A screensaver that toggles on and off random leds on the 5x5 matrix.
 ### SS 2
 
 A screensaver that simulates rain falling from the top of the 5x5 matrix to the bottom.
+
+### SS 3
+
+A screensaver that spins around the central point of the 5x5 matrix.
