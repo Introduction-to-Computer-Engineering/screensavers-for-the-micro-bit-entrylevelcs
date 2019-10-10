@@ -1,39 +1,71 @@
 let isAsleep = false
 let screenNumber = 0
-let x = 0
-let y = 0
+let xCoord = 0
+let yCoord = 0
+//go to sleep
 input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
     isAsleep = true
-    screenNumber = Math.randomRange(1, 2)
-    //screensaver 1
-    if (isAsleep && screenNumber == 1) {
-        while (isAsleep && screenNumber == 1) {
-            randomTog()
-            if (input.buttonIsPressed(Button.A)) {
-                screenNumber = 0
-                isAsleep = false
-                basic.clearScreen()
+    while (isAsleep) {
+        //screensaver 1
+        if (screenNumber == 1) {
+            basic.clearScreen()
+            while (screenNumber == 1) {
+                randomTog()
             }
         }
-    }
-    //screensaver 2
-    if (isAsleep && screenNumber == 2) {
-        while (isAsleep && screenNumber == 2) {
-            rain()
-            if (input.buttonIsPressed(Button.A)) {
-                screenNumber = 0
-                isAsleep = false
-                basic.clearScreen()
+        //screensaver 2
+        if (screenNumber == 2) {
+            basic.clearScreen()
+            while (screenNumber == 2) {
+                rain()
+            }
+        }
+        //screensaver 3
+        if (screenNumber == 3) {
+            basic.clearScreen()
+            xCoord = 0
+            yCoord = 0
+            while (screenNumber == 3) {
+                spin()
+            }
+        }
+        if (screenNumber == 4) {
+            basic.clearScreen()
+            while (screenNumber == 4) {
+                rain()
+            }
+        }
+        if (screenNumber == 5) {
+            basic.clearScreen()
+            while (screenNumber == 5) {
+                rain()
             }
         }
     }
 })
+//wakeup
 input.onButtonPressed(Button.B, function () {
-    isAsleep = false
     screenNumber = 0
+    isAsleep = false
     basic.clearScreen()
     basic.showString("Awake")
+})
+
+input.onGesture(Gesture.Shake, function () {
+    screenNumber = 1
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    screenNumber = 2
+})
+input.onGesture(Gesture.TiltRight, function () {
+    screenNumber = 3
+})
+input.onGesture(Gesture.LogoDown, function () {
+    screenNumber = 4
+})
+input.onGesture(Gesture.LogoUp, function () {
+    screenNumber = 5
 })
 
 function randomTog() {
@@ -42,14 +74,41 @@ function randomTog() {
 }
 function rain() {
     basic.clearScreen()
-    x = Math.randomRange(0, 4)
-    led.toggle(x, 0)
+    xCoord = Math.randomRange(0, 4)
+    led.toggle(xCoord, 0)
     basic.pause(100)
-    led.toggle(x, 0)
-    led.toggle(x, 2)
+    led.toggle(xCoord, 0)
+    led.toggle(xCoord, 2)
     basic.pause(100)
-    led.toggle(x, 2)
-    led.toggle(x, 4)
+    led.toggle(xCoord, 2)
+    led.toggle(xCoord, 4)
     basic.pause(100)
-    led.toggle(x, 4)
+    led.toggle(xCoord, 4)
+}
+
+function spin() {
+    led.toggle(xCoord, 0)
+    led.toggle(xCoord - 1, 0)
+    led.toggle(xCoord, 1)
+    led.toggle(xCoord - 1, 1)
+    led.toggle(4, yCoord)
+    led.toggle(4, yCoord - 1)
+    led.toggle(3, yCoord)
+    led.toggle(3, yCoord - 1)
+    led.toggle(4 - xCoord, 4)
+    led.toggle(5 - xCoord, 4)
+    led.toggle(4 - xCoord, 3)
+    led.toggle(5 - xCoord, 3)
+    led.toggle(0, 4 - yCoord)
+    led.toggle(0, 5 - yCoord)
+    led.toggle(1, 4 - yCoord)
+    led.toggle(1, 5 - yCoord)
+    xCoord += 1
+    yCoord += 1
+    basic.pause(100)
+    if (xCoord == 6) {
+        xCoord = 0
+        yCoord = 0
+        led.toggle(2, 2)
+    }
 }
